@@ -2,7 +2,8 @@
 
 <h1>Veículos</h1>
 
-<button onclick="window.location.href='veiculo_formulario.php'">Novo veículo</button>
+<button onclick="window.location.href='veiculo_cadastro.php'">Novo Veículo</button>
+
 
 <?php
 
@@ -50,6 +51,19 @@ try {
                         </td>
                         <td><?php echo $veiculo['cor']; ?></td>
                         <td><?php echo $veiculo['ano']; ?></td>
+                        <td>
+                            <form action="veiculo_cadastro.php" method="POST">
+                                <input type="hidden" name="idveiculo" value="<?php echo $veiculo['idveiculo'] ?>">
+                                <input type="submit" value="Editar">
+                            </form>
+                        </td>
+
+                        <td>
+                            <form action="actions/veiculo_excluir.php" method="POST">
+                                <input type="hidden" name="idveiculo" value="<?php echo $veiculo['idveiculo'] ?>">
+                                <input type="submit" value="Excluir">
+                            </form>
+                        </td>
                     </tr>
 
                 <?php endforeach; ?>
@@ -63,5 +77,4 @@ try {
 } catch (PDOException $e) {
     echo "Erro ao buscar veículos: " . $e->getMessage();
 }
-
 include("includes/footer.php");
